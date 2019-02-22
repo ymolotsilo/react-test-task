@@ -1,0 +1,34 @@
+.AddNewItem {
+	height:          40px;
+	line-height:     25px;
+	display:         flex;
+	justify-content: flex-end;
+	margin:          10px;
+
+	.Input {
+		height:      100%;
+		flex:        1 0 250px;
+		border:      0;
+		line-height: 40px;
+		box-sizing:  border-box;
+		padding:     0 10px;
+		font-size:   15px;
+
+		&:focus {
+			border: 1px solid #20b16c;
+			}
+		}
+
+	.Button {
+		height:           100%;
+		outline:          0;
+		border:           0;
+		width:            40px;
+		color:            #fff;
+		background-color: #20b16c;
+		text-align:       center;
+		line-height:      40px;
+		font-size:        25px;
+		}
+	}
+
