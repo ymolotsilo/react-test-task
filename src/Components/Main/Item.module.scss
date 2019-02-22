@@ -1,0 +1,12 @@
+.Item {
+	padding:       10px;
+	border-radius: 5px;
+	overflow:      fragments;
+	border-bottom: 1px dashed #20b16c;
+
+	&:hover {
+		color:            #fff;
+		font-weight:      bold;
+		background-color: #20b16c;
+		}
+	}

@@ -1,40 +1,22 @@
 import React from 'react'
-import Departments from './Departments/Departments'
-import Department from './Departments/Department/Department'
-import Employees from './Employees/Employees'
-import Employee from './Employees/Employee/Employee'
+import Item from './Item'
 import styles from './Main.module.scss'
 
-const Main = props => (
+const Main = () => (
   <main className={styles.Main}>
-    <Departments>
-      <Department
+    <div className={styles.container}>
+      <div style={{width: '100%'}}>
+        <input type="text" className={styles.Item} placeholder='Название отдела...'/>
+        <button style={{width: '50%', height: '100%', outline: 'none'}}>+</button>
+
+      </div>
+      <Item
         title='Отдел 1'
       />
-      <Department
-        title='Отдел 2'
-      />
-      <Department
-        title='Отдел 3'
-      />
-      <Department
-        title='Отдел 4'
-      />
-    </Departments>
-    <Employees>
-      <Employee
-        title='Работник 1'
-      />
-      <Employee
-        title='Работник 2'
-      />
-      <Employee
-        title='Работник 3'
-      />
-      <Employee
-        title='Работник 4'
-      />
-    </Employees>
+    </div>
+    <div className={styles.container}>
+      Выберите отдел для просмотра и редактирования списка сострудников.
+    </div>
   </main>
 );
 
