@@ -56,16 +56,19 @@ class Main extends React.Component {
       />
     ));
 
-    let secondary = null;
+    let secondary = <div style={{flex: '1 0 340px'}}>&nbsp;</div>;
 
     if (this.state.activeItem) {
       let secondaryProps = this.state.departments[this.state.activeItem - 1];
-      secondary = <Item
-        title={secondaryProps.title}
-        key={secondaryProps.title}
-        id={secondaryProps.id}
-        itemType={secondaryProps.itemType}
-      />
+      secondary = (<div className={styles.primary}>
+        <Item
+          title={secondaryProps.title}
+          key={secondaryProps.title}
+          id={secondaryProps.id}
+          itemType={secondaryProps.itemType}
+        />
+      </div>)
+
     }
 
     return (
@@ -79,9 +82,9 @@ class Main extends React.Component {
           />
           {departments}
         </div>
-        <div className={styles.primary}>
-          {secondary}
-        </div>
+
+        {secondary}
+
       </main>
     )
   }
