@@ -8,15 +8,11 @@
 	.Input {
 		height:      100%;
 		flex:        1 0 250px;
-		border:      0;
 		line-height: 40px;
 		box-sizing:  border-box;
 		padding:     0 10px;
 		font-size:   15px;
-
-		&:focus {
-			border: 1px solid #20b16c;
-			}
+		border:      1px solid #20b16c;
 		}
 
 	.Button {
@@ -30,5 +26,6 @@
 		line-height:      40px;
 		font-size:        25px;
 		}
+
 	}
 

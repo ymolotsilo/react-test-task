@@ -2,7 +2,7 @@ import React from 'react'
 import styles from './AddNewItem.module.scss'
 
 const AddNewItem = props => (
-  <div className={styles.AddNewItem}>
+  <form className={styles.AddNewItem} onSubmit={props.addItem}>
     <input className={styles.Input}
            placeholder={props.placeholder}
            value={props.inputValue}
@@ -12,7 +12,7 @@ const AddNewItem = props => (
             onClick={props.addItem}
     >+
     </button>
-  </div>
+  </form>
 );
 
 export default AddNewItem
