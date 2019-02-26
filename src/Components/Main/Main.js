@@ -86,11 +86,16 @@ class Main extends React.Component {
   }
 
   deleteItem() {
-    const id = this.state.activeItem - 1;
+    const id = this.state.activeItem;
     const newDepartments = this.state.departments;
-    delete newDepartments[id];
+    delete newDepartments[id - 1];
 
-    const employees = this.state.employees.filter(employee => employee.departmentId !== id + 1);
+    const employees = this.state.employees.map(employee => {
+      if (employee.departmentId === id) {
+        employee.departmentId = null;
+      }
+      return employee
+    });
     this.setState({departments: newDepartments, employees, activeItem: null});
   }
 

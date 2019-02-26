@@ -33,15 +33,20 @@ const About = props => {
           {itemHeader}
           <div className={styles.edit}
                onClick={!props.editEnabled ? props.editHandler : props.enableNewName}
+               title="Изменить название отдела"
           >{!props.editEnabled ? '🖉' : '✔'}
           </div>
           <div className={styles.delete}
                onClick={props.deleteItem}
+               title='Удалить отдел'
           >🞭
           </div>
         </div>
 
         {employees}
+        <p className={styles.Quantity}>
+          <strong>Всего сотрудников:</strong> {employees.length}
+        </p>
       </div>
     )
   }
