@@ -1,0 +1,38 @@
+.About {
+	height:  40px;
+	margin:  10px;
+	display: flex;
+	}
+
+h2, .edit, .delete {
+	margin:          0;
+	font-size:       1.5em;
+	box-sizing:      border-box;
+	border-collapse: collapse;
+	}
+
+.delete {
+	color:      #ee333d;
+	width:      40px;
+	height:     40px;
+	text-align: center;
+
+	&:hover {
+		border: 1px solid #ee333d;
+		}
+	}
+
+.edit {
+	color:      #20b16c;
+	width:      40px;
+	height:     40px;
+	text-align: center;
+
+	&:hover {
+		border: 1px solid #20b16c;
+		}
+	}
+
+h2 {
+	flex-grow: 1;
+	}

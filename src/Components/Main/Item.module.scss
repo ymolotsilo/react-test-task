@@ -1,15 +1,27 @@
 .Item {
 	padding:       10px;
+	border:        1px solid transparent;
 	border-radius: 5px;
-	overflow:      fragments;
-	border-bottom: 1px dashed #20b16c;
 	height:        25px;
 	line-height:   25px;
 	margin:        0 10px;
 
 	&:hover {
-		color:            #fff;
-		font-weight:      bold;
-		background-color: #20b16c;
+		border: 1px dashed #20b16c;
+		}
+
+	&--active {
+		background:    #20b16c;
+		font-weight:   bold;
+		color:         #fff;
+		padding:       10px;
+		border-radius: 5px;
+		height:        25px;
+		line-height:   25px;
+		margin:        0 10px;
+
+		&:hover {
+			background: #20b16c + #222;
+			}
 		}
 	}
