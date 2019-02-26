@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from './About.module.scss'
 import EditItem from './EditItem'
+import Item from './Item'
 
 
 let itemHeader = null;
@@ -16,15 +17,31 @@ const About = props => {
                              enableName={props.enableNewName}
       />;
     }
+
+  let employees = props.employees.filter(employee => employee.departmentId === props.primaryId).map(employee => (
+    <Item title={employee.name}
+          key={employee.id}
+          id={employee.id}
+          itemType={employee.itemType}
+          onClickHandler={e => e.preventDefault}
+    />
+  ));
+
     return (
-      <div className={styles.About}>
-        {itemHeader}
-        <div className={styles.edit}
-             onClick={!props.editEnabled ? () => props.editHandler(props.id)
-               : props.enableNewName}
-        >{!props.editEnabled ? '🖉' : '✔'}
+      <div>
+        <div className={styles.About}>
+          {itemHeader}
+          <div className={styles.edit}
+               onClick={!props.editEnabled ? props.editHandler : props.enableNewName}
+          >{!props.editEnabled ? '🖉' : '✔'}
+          </div>
+          <div className={styles.delete}
+               onClick={props.deleteItem}
+          >🞭
+          </div>
         </div>
-        <div className={styles.delete}>🞭</div>
+
+        {employees}
       </div>
     )
   }

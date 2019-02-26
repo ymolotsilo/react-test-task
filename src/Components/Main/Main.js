@@ -11,7 +11,6 @@ class Main extends React.Component {
       activeItem: null,
       primaryIs: 'department', //передать из app.js
       aboutIs: null,
-      currentId: 4,
       departments: [
         {title: 'Отдел 1', itemType: 'department', id: 1},
         {title: 'Отдел 2', itemType: 'department', id: 2},
@@ -24,6 +23,12 @@ class Main extends React.Component {
         {name: 'Работник 4', departmentId: 1, itemType: 'employee', id: 4},
         {name: 'Работник 5', departmentId: 2, itemType: 'employee', id: 5},
         {name: 'Работник 6', departmentId: 3, itemType: 'employee', id: 6},
+        {name: 'Работник 7', departmentId: 1, itemType: 'employee', id: 7},
+        {name: 'Работник 8', departmentId: 2, itemType: 'employee', id: 8},
+        {name: 'Работник 9', departmentId: 3, itemType: 'employee', id: 9},
+        {name: 'Работник 10', departmentId: 1, itemType: 'employee', id: 10},
+        {name: 'Работник 11', departmentId: 2, itemType: 'employee', id: 11},
+        {name: 'Работник 12', departmentId: 3, itemType: 'employee', id: 12},
       ],
       inputValue: '',
       editEnabled: false,
@@ -35,6 +40,7 @@ class Main extends React.Component {
     this.onEditClickHandler = this.onEditClickHandler.bind(this);
     this.changeItemNameHandler = this.changeItemNameHandler.bind(this);
     this.enableNewItemName = this.enableNewItemName.bind(this);
+    this.deleteItem = this.deleteItem.bind(this);
   }
 
   changeInputValue(event) {
@@ -50,9 +56,9 @@ class Main extends React.Component {
     const newDepartment = this.state.inputValue.trim().slice(0, 20);
     if (newDepartment) {
       const newDepartments = this.state.departments;
-      let id = this.state.currentId;
+      const id = this.state.departments.length + 1;
       newDepartments.push({title: newDepartment, itemType: 'department', id});
-      this.setState({departments: newDepartments, inputValue: '', currentId: ++id})
+      this.setState({departments: newDepartments, inputValue: ''})
     } else {
       this.setState({inputValue: ''})
     }
@@ -77,6 +83,15 @@ class Main extends React.Component {
       newDepartments[id].title = newName;
       this.setState({departments: newDepartments, editEnabled: false});
     }
+  }
+
+  deleteItem() {
+    const id = this.state.activeItem - 1;
+    const newDepartments = this.state.departments;
+    delete newDepartments[id];
+
+    const employees = this.state.employees.filter(employee => employee.departmentId !== id + 1);
+    this.setState({departments: newDepartments, employees, activeItem: null});
   }
 
 
@@ -104,6 +119,9 @@ class Main extends React.Component {
           editEnabled={edit}
           changeItemNameHandler={this.changeItemNameHandler}
           enableNewName={this.enableNewItemName}
+          deleteItem={this.deleteItem}
+          employees={this.state.employees}
+          primaryId={this.state.activeItem}
         />
       </div>)
     } else {
