@@ -41,6 +41,7 @@ class Main extends React.Component {
     this.changeItemNameHandler = this.changeItemNameHandler.bind(this);
     this.enableNewItemName = this.enableNewItemName.bind(this);
     this.deleteItem = this.deleteItem.bind(this);
+    this.onInputLostFocus = this.onInputLostFocus.bind(this);
   }
 
   changeInputValue(event) {
@@ -53,7 +54,7 @@ class Main extends React.Component {
 
   addItem = (e) => {
     e.preventDefault();
-    const newDepartment = this.state.inputValue.trim().slice(0, 20);
+    const newDepartment = this.state.inputValue.trim().slice(0, 13).trim();
     if (newDepartment) {
       const newDepartments = this.state.departments;
       const id = this.state.departments.length + 1;
@@ -78,10 +79,15 @@ class Main extends React.Component {
     e.preventDefault();
     if (this.state.editEnabled) {
       const id = this.state.activeItem - 1;
-      const newName = this.state.editEnabled;
-      const newDepartments = this.state.departments;
-      newDepartments[id].title = newName;
-      this.setState({departments: newDepartments, editEnabled: false});
+      const newName = this.state.editEnabled.trim().slice(0, 13).trim();
+
+      if (newName === '') {
+        this.setState({editEnabled: false});
+      } else {
+        const newDepartments = this.state.departments;
+        newDepartments[id].title = newName;
+        this.setState({departments: newDepartments, editEnabled: false});
+      }
     }
   }
 
@@ -97,6 +103,10 @@ class Main extends React.Component {
       return employee
     });
     this.setState({departments: newDepartments, employees, activeItem: null});
+  }
+
+  onInputLostFocus() {
+    if (this.state.editEnabled === '') this.setState({editEnabled: false});
   }
 
 
@@ -127,6 +137,7 @@ class Main extends React.Component {
           deleteItem={this.deleteItem}
           employees={this.state.employees}
           primaryId={this.state.activeItem}
+          onBlur={this.onInputLostFocus}
         />
       </div>)
     } else {
@@ -138,7 +149,6 @@ class Main extends React.Component {
 
         <div className={styles.primary}>
           <AddNewItem
-            placeholder='Введите название отдела'
             inputValue={this.state.inputValue}
             onInputValueChanged={this.changeInputValue}
             addItem={this.addItem}

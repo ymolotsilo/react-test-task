@@ -9,6 +9,8 @@ const EditItem = props => (
            className={styles.Input}
            value={props.value}
            onChange={props.onItemNameChanged}
+           onBlur={props.onBlur}
+           autoFocus
     />
   </form>
 );

@@ -7,7 +7,7 @@ import Item from './Item'
 let itemHeader = null;
 
 const About = props => {
-    if (!props.editEnabled) {
+  if (props.editEnabled === false) {
       itemHeader =
         <h2 className={styles.h2}>{props.title.toUpperCase()}</h2>
     } else {
@@ -15,13 +15,15 @@ const About = props => {
                              onItemNameChanged={props.changeItemNameHandler}
                              value={props.editEnabled}
                              enableName={props.enableNewName}
+                             onBlur={props.onBlur}
       />;
     }
 
   let employees = props.employees.filter(employee => employee.departmentId === props.primaryId).map(employee => (
-    <div className={styles.Item}>
+    <div className={styles.Item}
+         key={employee.id}
+    >
       <Item title={employee.name}
-            key={employee.id}
             id={employee.id}
             itemType={employee.itemType}
             onClickHandler={e => e.preventDefault}
@@ -29,11 +31,15 @@ const About = props => {
 
       <div className={styles.delete}
            onClick={props.deleteItem}
-           title='Убрать сотрудника из отдела'
-      ><i className="fas fa-trash-alt"></i>
+           title='Убрать сотрудника из отдела'>
+        <i className="fas fa-trash-alt"></i>
       </div>
     </div>
   ));
+
+  //Чтобы кнопка изменить название/применить новое не менялась, когда пользователь удалил все символы из названия
+  if (props.editEnabled === false) {
+  }
 
     return (
       <div>
@@ -42,7 +48,7 @@ const About = props => {
           <div className={styles.edit}
                onClick={!props.editEnabled ? props.editHandler : props.enableNewName}
                title="Изменить название отдела"
-          >{!props.editEnabled ? <i className="fas fa-pen"></i> : <i class="fas fa-check"></i>}
+          >{props.editEnabled === false ? <i className="fas fa-pen"></i> : <i className="fas fa-check"></i>}
           </div>
           <div className={styles.add}
                title='Добавить работника в отдел'
