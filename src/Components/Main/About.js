@@ -38,10 +38,6 @@ const About = props => {
     </div>
   ));
 
-  //Чтобы кнопка изменить название/применить новое не менялась, когда пользователь удалил все символы из названия
-  if (props.editEnabled === false) {
-  }
-
     return (
       <div>
         <div className={styles.About}>
