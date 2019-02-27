@@ -9,8 +9,8 @@ class Main extends React.Component {
     super(props);
     this.state = {
       activeItem: null,
-      primaryIs: 'department', //передать из app.js
-      aboutIs: null,
+      primaryIs: 'departments', //передать из app.js
+      aboutIs: 'employees',
       departments: [
         {title: 'Отдел 1', itemType: 'department', id: 1},
         {title: 'Отдел 2', itemType: 'department', id: 2},
@@ -29,6 +29,18 @@ class Main extends React.Component {
         {name: 'Работник 10', departmentId: 1, itemType: 'employee', id: 10},
         {name: 'Работник 11', departmentId: 2, itemType: 'employee', id: 11},
         {name: 'Работник 12', departmentId: 3, itemType: 'employee', id: 12},
+        {name: 'Работник 13', departmentId: undefined, itemType: 'employee', id: 13},
+        {name: 'Работник 14', departmentId: undefined, itemType: 'employee', id: 14},
+        {name: 'Работник 15', departmentId: undefined, itemType: 'employee', id: 15},
+        {name: 'Работник 16', departmentId: undefined, itemType: 'employee', id: 16},
+        {name: 'Работник 17', departmentId: undefined, itemType: 'employee', id: 17},
+        {name: 'Работник 18', departmentId: undefined, itemType: 'employee', id: 18},
+        {name: 'Работник 19', departmentId: undefined, itemType: 'employee', id: 19},
+        {name: 'Работник 20', departmentId: undefined, itemType: 'employee', id: 20},
+        {name: 'Работник 21', departmentId: undefined, itemType: 'employee', id: 21},
+        {name: 'Работник 22', departmentId: undefined, itemType: 'employee', id: 22},
+        {name: 'Работник 23', departmentId: undefined, itemType: 'employee', id: 23},
+        {name: 'Работник 24', departmentId: undefined, itemType: 'employee', id: 24},
       ],
       inputValue: '',
       editEnabled: false,
@@ -91,22 +103,29 @@ class Main extends React.Component {
     }
   }
 
-  deleteItem() {
-    const id = this.state.activeItem;
-    const newDepartments = this.state.departments;
-    delete newDepartments[id - 1];
+  deleteItem(id) {
+    if (!id) {
+      let id = this.state.activeItem;
+      const newDepartments = this.state.departments;
+      delete newDepartments[id - 1];
 
-    const employees = this.state.employees.map(employee => {
-      if (employee.departmentId === id) {
-        employee.departmentId = null;
-      }
-      return employee
-    });
-    this.setState({departments: newDepartments, employees, activeItem: null});
+      const employees = this.state.employees.map(employee => {
+        if (employee.departmentId === id) {
+          employee.departmentId = undefined;
+        }
+        return employee
+      });
+
+      this.setState({departments: newDepartments, employees, activeItem: null});
+    } else {
+      const employees = this.state.employees;
+      employees[id - 1].departmentId = undefined;
+      this.setState({employees});
+    }
   }
 
   onInputLostFocus() {
-    if (this.state.editEnabled === '') this.setState({editEnabled: false});
+    if (this.state.editEnabled.trim() === '') this.setState({editEnabled: false});
   }
 
 

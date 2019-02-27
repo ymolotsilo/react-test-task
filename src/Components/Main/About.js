@@ -30,7 +30,7 @@ const About = props => {
       />
 
       <div className={styles.delete}
-           onClick={props.deleteItem}
+           onClick={() => props.deleteItem(employee.id)}
            title='Убрать сотрудника из отдела'>
         <i className="fas fa-trash-alt"></i>
       </div>
@@ -56,7 +56,7 @@ const About = props => {
             <i className="fas fa-plus"></i>
           </div>
           <div className={styles.delete}
-               onClick={props.deleteItem}
+               onClick={() => props.deleteItem()}
                title='Удалить отдел'
           ><i className="fas fa-trash-alt"></i>
           </div>
