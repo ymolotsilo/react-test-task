@@ -9,8 +9,8 @@ const AddNewItem = props => (
            onChange={props.onInputValueChanged}
     />
     <button className={styles.Button}
-            onClick={props.addItem}
-    >+
+            onClick={props.addItem}>
+      <i className="fas fa-plus"></i>
     </button>
   </form>
 );

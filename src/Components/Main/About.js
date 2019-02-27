@@ -19,12 +19,20 @@ const About = props => {
     }
 
   let employees = props.employees.filter(employee => employee.departmentId === props.primaryId).map(employee => (
-    <Item title={employee.name}
-          key={employee.id}
-          id={employee.id}
-          itemType={employee.itemType}
-          onClickHandler={e => e.preventDefault}
-    />
+    <div className={styles.Item}>
+      <Item title={employee.name}
+            key={employee.id}
+            id={employee.id}
+            itemType={employee.itemType}
+            onClickHandler={e => e.preventDefault}
+      />
+
+      <div className={styles.delete}
+           onClick={props.deleteItem}
+           title='Убрать сотрудника из отдела'
+      ><i className="fas fa-trash-alt"></i>
+      </div>
+    </div>
   ));
 
     return (
@@ -34,19 +42,24 @@ const About = props => {
           <div className={styles.edit}
                onClick={!props.editEnabled ? props.editHandler : props.enableNewName}
                title="Изменить название отдела"
-          >{!props.editEnabled ? '🖉' : '✔'}
+          >{!props.editEnabled ? <i className="fas fa-pen"></i> : <i class="fas fa-check"></i>}
+          </div>
+          <div className={styles.add}
+               title='Добавить работника в отдел'
+          >
+            <i className="fas fa-plus"></i>
           </div>
           <div className={styles.delete}
                onClick={props.deleteItem}
                title='Удалить отдел'
-          >🞭
+          ><i className="fas fa-trash-alt"></i>
           </div>
         </div>
 
         {employees}
-        <p className={styles.Quantity}>
+        <div className={styles.Quantity}>
           <strong>Всего сотрудников:</strong> {employees.length}
-        </p>
+        </div>
       </div>
     )
   }

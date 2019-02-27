@@ -1,21 +1,36 @@
 .About {
-	height:  40px;
-	margin:  10px;
+	height:         40px;
+	margin:         10px;
+	display:        flex;
+	border-bottom:  1px dotted #20b16c;
+	padding-bottom: 5px;
+	}
+
+.Item {
 	display: flex;
 	}
 
-h2, .edit, .delete {
+h2, .edit, .delete, .add {
 	margin:          0;
-	font-size:       1.5em;
 	box-sizing:      border-box;
 	border-collapse: collapse;
+	display:         flex;
+	align-items:     center;
+	}
+
+.edit, .delete, .add {
+	font-size:   1.2em;
+	font-weight: bold;
 	}
 
 .delete {
-	color:      #ee333d;
-	width:      40px;
-	height:     40px;
-	text-align: center;
+	color:           #ee333d;
+	width:           40px;
+	height:          40px;
+	justify-content: center;
+	margin:          0;
+	padding:         0;
+
 
 	&:hover {
 		border: 1px solid #ee333d;
@@ -23,20 +38,43 @@ h2, .edit, .delete {
 	}
 
 .edit {
-	color:      #20b16c;
-	width:      40px;
-	height:     40px;
-	text-align: center;
+	color:           #20b16c;
+	width:           40px;
+	height:          40px;
+	text-align:      center;
+	margin:          0;
+	padding:         0;
+	justify-content: center;
+
 
 	&:hover {
 		border: 1px solid #20b16c;
 		}
 	}
 
+.add {
+	color:           #21a9ff;
+	width:           40px;
+	height:          40px;
+	text-align:      center;
+	margin:          0;
+	padding:         0;
+	justify-content: center;
+
+	&:hover {
+		border: 1px solid #21a9ff;
+		}
+	}
+
 h2 {
 	flex-grow: 1;
+	font-size: 1.5em;
+
 	}
 
 .Quantity {
-	margin: 20px;
+	margin:      10px;
+	padding-top: 10px;
+	border-top:  1px dotted #20b16c;
+	font-size:   1.2em;
 	}

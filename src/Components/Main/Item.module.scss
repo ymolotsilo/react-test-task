@@ -5,6 +5,7 @@
 	height:        25px;
 	line-height:   25px;
 	margin:        0 10px;
+	flex-grow:     1;
 
 	&:hover {
 		border: 1px dashed #20b16c;
@@ -21,7 +22,7 @@
 		margin:        0 10px;
 
 		&:hover {
-			background: #20b16c + #222;
+			background: #42d38e;
 			}
 		}
 	}
