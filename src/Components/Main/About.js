@@ -20,13 +20,14 @@ const About = props => {
     }
 
   let employees = props.employees.filter(employee => employee.departmentId === props.primaryId).map(employee => (
-    <div className={styles.Item}
+    <div className={styles.Items}
          key={employee.id}
     >
       <Item title={employee.name}
             id={employee.id}
             itemType={employee.itemType}
             onClickHandler={e => e.preventDefault}
+            noHover={true}
       />
 
       <div className={styles.delete}

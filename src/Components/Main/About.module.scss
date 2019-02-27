@@ -1,14 +1,18 @@
 .About {
 	height:         40px;
-	margin:         10px;
+	margin:         0 10px 10px;
 	display:        flex;
 	border-bottom:  1px dotted #20b16c;
 	padding-bottom: 5px;
 	}
 
-.Item {
-	display:      flex;
-	margin-right: 15px;
+.Items {
+	display: flex;
+	margin:  0 15px;
+
+	&:hover {
+		outline: 1px dashed #20b16c;
+		}
 	}
 
 h2, .edit, .delete, .add {
